@@ -285,20 +285,19 @@ export default function Home() {
         className="mt-auto pt-6 pb-4 text-center w-full max-w-4xl"
       >
         <div className="border-t border-white/10 pt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-[#FF85C4] to-[#045F33] flex items-center justify-center">
-              <div className="w-4 h-4 rounded-full bg-[#1a1a2e] flex items-center justify-center">
-                <div className="w-2 h-2 rounded-full bg-white"></div>
-              </div>
-            </div>
-            <p className="text-xs text-gray-400">
-              #WargaBantuWarga #IndonesiaBerbenah
-            </p>
-          </div>
-
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-[10px] sm:text-xs text-gray-500">
-            <span>Dibuat dengan 💖 untuk Indonesia</span>
-            <span>{new Date().getFullYear()}</span>
+            <span>
+              Dibuat dengan 💖 oleh{" "}
+              <a
+                href="https://instagram.com/rendiichtiar"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#FF85C4] hover:underline"
+              >
+                @rendiichtiar
+              </a>{" "}
+              untuk indonesia
+            </span>
           </div>
         </div>
       </motion.footer>
