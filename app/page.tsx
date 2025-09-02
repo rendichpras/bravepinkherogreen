@@ -30,14 +30,16 @@ const processImageData = (
   color2: { r: number; g: number; b: number },
   intensityFactor: number
 ) => {
-  // Proses gambar dalam batch untuk menghindari blocking UI thread
-  const batchSize = 10000; // Jumlah piksel per batch
+  // Optimasi: Batch size yang lebih besar untuk gambar besar
+  const totalPixels = width * height;
+  const batchSize = Math.max(100000, Math.floor(totalPixels / 10)); // Minimal 100k piksel per batch
   let index = 0;
 
   return new Promise<Uint8ClampedArray>((resolve) => {
     const processNextBatch = () => {
       const end = Math.min(index + batchSize, data.length);
 
+      // Optimasi: Gunakan loop yang lebih efisien
       for (let i = index; i < end; i += 4) {
         // Mengkonversi RGB ke grayscale (formula yang lebih efisien)
         const gray = (data[i] * 0.299 + data[i + 1] * 0.587 + data[i + 2] * 0.114) | 0;
@@ -59,8 +61,8 @@ const processImageData = (
       index = end;
 
       if (index < data.length) {
-        // Masih ada data yang perlu diproses, jadwalkan batch berikutnya
-        setTimeout(processNextBatch, 0);
+        // Gunakan requestAnimationFrame untuk performa yang lebih baik
+        requestAnimationFrame(processNextBatch);
       } else {
         // Semua data telah diproses
         resolve(data);
@@ -134,12 +136,27 @@ export default function Home() {
 
       const img = imageCache.current;
 
-      // Mengatur ukuran canvas sesuai dengan gambar
-      canvas.width = img.width;
-      canvas.height = img.height;
+      // Optimasi: Batasi ukuran maksimum gambar untuk performa
+      const maxDimension = 1200; // Maksimal 1200px untuk performa optimal
+      let targetWidth = img.width;
+      let targetHeight = img.height;
+      
+      if (img.width > maxDimension || img.height > maxDimension) {
+        if (img.width > img.height) {
+          targetWidth = maxDimension;
+          targetHeight = (img.height * maxDimension) / img.width;
+        } else {
+          targetHeight = maxDimension;
+          targetWidth = (img.width * maxDimension) / img.height;
+        }
+      }
 
-      // Menggambar gambar asli
-      ctx.drawImage(img, 0, 0);
+      // Mengatur ukuran canvas sesuai dengan gambar yang dioptimasi
+      canvas.width = targetWidth;
+      canvas.height = targetHeight;
+
+      // Menggambar gambar asli dengan ukuran yang dioptimasi
+      ctx.drawImage(img, 0, 0, targetWidth, targetHeight);
 
       // Jika menampilkan gambar asli, tidak perlu menerapkan filter
       if (showOriginal) {
@@ -238,6 +255,9 @@ export default function Home() {
               </CardTitle>
               <p className="text-xs sm:text-sm text-gray-400 mt-2 max-w-md">
                 Ikuti tren media sosial Indonesia dengan warna Brave Pink & Hero Green
+              </p>
+              <p className="text-xs text-gray-500 mt-1">
+                Gambar akan dioptimasi maksimal 1200px untuk performa optimal
               </p>
             </div>
           </CardHeader>
