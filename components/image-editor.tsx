@@ -102,7 +102,7 @@ export function ImageEditor({
           {/* Pilihan Mode Warna */}
           <div>
             <label className="text-sm font-medium text-card-foreground block mb-2">Pilihan Mode Warna</label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2 mb-2">
               <Button
                 type="button"
                 variant={colorMode === ColorMode.DUOTONE ? "default" : "outline"}
@@ -113,9 +113,37 @@ export function ImageEditor({
                 )}
               >
                 <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-hero-green to-brave-pink" : "bg-gradient-to-r from-brave-pink to-hero-green"} rounded-sm`}></div>
-                <span className="block text-xs mt-1">Duotone</span>
+                <span className="block text-xs mt-1">Pink-Hijau</span>
               </Button>
               
+              <Button
+                type="button"
+                variant={colorMode === ColorMode.PINK_BLUE ? "default" : "outline"}
+                onClick={() => setColorMode(ColorMode.PINK_BLUE)}
+                className={cn(
+                  "h-auto py-2 px-2 relative overflow-hidden",
+                  colorMode === ColorMode.PINK_BLUE ? "border-2 border-brave-pink" : "border border-gray-200"
+                )}
+              >
+                <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-[#0038A8] to-brave-pink" : "bg-gradient-to-r from-brave-pink to-[#0038A8]"} rounded-sm`}></div>
+                <span className="block text-xs mt-1">Pink-Biru</span>
+              </Button>
+              
+              <Button
+                type="button"
+                variant={colorMode === ColorMode.GREEN_BLUE ? "default" : "outline"}
+                onClick={() => setColorMode(ColorMode.GREEN_BLUE)}
+                className={cn(
+                  "h-auto py-2 px-2 relative overflow-hidden",
+                  colorMode === ColorMode.GREEN_BLUE ? "border-2 border-brave-pink" : "border border-gray-200"
+                )}
+              >
+                <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-[#0038A8] to-hero-green" : "bg-gradient-to-r from-hero-green to-[#0038A8]"} rounded-sm`}></div>
+                <span className="block text-xs mt-1">Hijau-Biru</span>
+              </Button>
+            </div>
+            
+            <div className="grid grid-cols-3 gap-2">
               <Button
                 type="button"
                 variant={colorMode === ColorMode.PINK_ONLY ? "default" : "outline"}
@@ -140,6 +168,19 @@ export function ImageEditor({
               >
                 <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-hero-green to-gray-800" : "bg-gradient-to-r from-gray-800 to-hero-green"} rounded-sm`}></div>
                 <span className="block text-xs mt-1">Hijau</span>
+              </Button>
+              
+              <Button
+                type="button"
+                variant={colorMode === ColorMode.BLUE_ONLY ? "default" : "outline"}
+                onClick={() => setColorMode(ColorMode.BLUE_ONLY)}
+                className={cn(
+                  "h-auto py-2 px-2 relative overflow-hidden",
+                  colorMode === ColorMode.BLUE_ONLY ? "border-2 border-brave-pink" : "border border-gray-200"
+                )}
+              >
+                <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-[#0038A8] to-gray-800" : "bg-gradient-to-r from-gray-800 to-[#0038A8]"} rounded-sm`}></div>
+                <span className="block text-xs mt-1">Biru</span>
               </Button>
             </div>
           </div>
@@ -166,11 +207,25 @@ export function ImageEditor({
               <label className="text-sm font-medium text-card-foreground">Balik Warna</label>
               <div className="flex items-center gap-1 text-xs text-muted-foreground">
                 {colorMode === ColorMode.DUOTONE ? (
-                  // Icon untuk mode duotone
+                  // Icon untuk mode duotone Pink-Hijau
                   <>
                     <span className="inline-block w-3 h-3 rounded-full bg-brave-pink"></span>
                     <ArrowRightLeft className="w-3 h-3" />
                     <span className="inline-block w-3 h-3 rounded-full bg-hero-green"></span>
+                  </>
+                ) : colorMode === ColorMode.PINK_BLUE ? (
+                  // Icon untuk mode duotone Pink-Biru
+                  <>
+                    <span className="inline-block w-3 h-3 rounded-full bg-brave-pink"></span>
+                    <ArrowRightLeft className="w-3 h-3" />
+                    <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: "#0038A8" }}></span>
+                  </>
+                ) : colorMode === ColorMode.GREEN_BLUE ? (
+                  // Icon untuk mode duotone Hijau-Biru
+                  <>
+                    <span className="inline-block w-3 h-3 rounded-full bg-hero-green"></span>
+                    <ArrowRightLeft className="w-3 h-3" />
+                    <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: "#0038A8" }}></span>
                   </>
                 ) : colorMode === ColorMode.PINK_ONLY ? (
                   // Icon untuk mode pink
@@ -179,12 +234,19 @@ export function ImageEditor({
                     <ArrowRightLeft className="w-3 h-3" />
                     <span className="inline-block w-3 h-3 rounded-full bg-brave-pink"></span>
                   </>
-                ) : (
+                ) : colorMode === ColorMode.GREEN_ONLY ? (
                   // Icon untuk mode hijau
                   <>
                     <span className="inline-block w-3 h-3 rounded-full bg-gray-800"></span>
                     <ArrowRightLeft className="w-3 h-3" />
                     <span className="inline-block w-3 h-3 rounded-full bg-hero-green"></span>
+                  </>
+                ) : (
+                  // Icon untuk mode biru
+                  <>
+                    <span className="inline-block w-3 h-3 rounded-full bg-gray-800"></span>
+                    <ArrowRightLeft className="w-3 h-3" />
+                    <span className="inline-block w-3 h-3 rounded-full" style={{ backgroundColor: "#0038A8" }}></span>
                   </>
                 )}
               </div>

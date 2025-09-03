@@ -14,7 +14,10 @@ interface DuotoneProcessorProps {
 export enum ColorMode {
   DUOTONE = "duotone", // Kedua warna (Brave Pink & Hero Green)
   PINK_ONLY = "pink_only", // Hanya Brave Pink
-  GREEN_ONLY = "green_only" // Hanya Hero Green
+  GREEN_ONLY = "green_only", // Hanya Hero Green
+  BLUE_ONLY = "blue_only", // Hanya Resistance Blue
+  PINK_BLUE = "pink_blue", // Brave Pink & Resistance Blue
+  GREEN_BLUE = "green_blue" // Hero Green & Resistance Blue
 }
 
 export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps) {
@@ -28,9 +31,13 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imageCache = useRef<HTMLImageElement | null>(null);
 
+  // Resistance Blue (mendekati warna biru perlawanan)
+  const resistanceBlue = "#0038A8";
+
   // Memoize warna RGB untuk menghindari kalkulasi berulang
-  const bravePinkRgb = useMemo(() => hexToRgb(bravePink), [bravePink]);
-  const heroGreenRgb = useMemo(() => hexToRgb(heroGreen), [heroGreen]);
+  const bravePinkRgb = useMemo(() => hexToRgb(bravePink) || { r: 255, g: 133, b: 196 }, [bravePink]);
+  const heroGreenRgb = useMemo(() => hexToRgb(heroGreen) || { r: 4, g: 95, b: 51 }, [heroGreen]);
+  const resistanceBlueRgb = useMemo(() => hexToRgb(resistanceBlue) || { r: 0, g: 56, b: 168 }, [resistanceBlue]);
 
   // Fungsi untuk memproses file
   const processFile = useCallback((file: File) => {
@@ -137,9 +144,41 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
             color2 = heroGreenRgb; // Hero Green untuk highlight
           }
           break;
+        case ColorMode.BLUE_ONLY:
+          // Hanya warna Resistance Blue (untuk shadow ke highlight)
+          if (isReversed) {
+            // Mode dibalik: Resistance Blue untuk shadow, abu-abu gelap untuk highlight
+            color1 = resistanceBlueRgb; // Resistance Blue untuk shadow
+            color2 = darkGray; // Abu-abu gelap untuk highlight
+          } else {
+            // Mode normal: Abu-abu gelap untuk shadow, Resistance Blue untuk highlight
+            color1 = darkGray; // Abu-abu gelap untuk shadow
+            color2 = resistanceBlueRgb; // Resistance Blue untuk highlight
+          }
+          break;
+        case ColorMode.PINK_BLUE:
+          // Mode duotone Brave Pink & Resistance Blue
+          if (isReversed) {
+            color1 = resistanceBlueRgb;
+            color2 = bravePinkRgb;
+          } else {
+            color1 = bravePinkRgb;
+            color2 = resistanceBlueRgb;
+          }
+          break;
+        case ColorMode.GREEN_BLUE:
+          // Mode duotone Hero Green & Resistance Blue
+          if (isReversed) {
+            color1 = resistanceBlueRgb;
+            color2 = heroGreenRgb;
+          } else {
+            color1 = heroGreenRgb;
+            color2 = resistanceBlueRgb;
+          }
+          break;
         case ColorMode.DUOTONE:
         default:
-          // Mode duotone normal (dua warna)
+          // Mode duotone normal (Brave Pink & Hero Green)
           color1 = isReversed ? heroGreenRgb : bravePinkRgb;
           color2 = isReversed ? bravePinkRgb : heroGreenRgb;
           break;
@@ -156,7 +195,7 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
     } finally {
       setIsProcessing(false);
     }
-  }, [image, originalImage, isReversed, showOriginal, intensity, bravePinkRgb, heroGreenRgb, colorMode]);
+  }, [image, originalImage, isReversed, showOriginal, intensity, bravePinkRgb, heroGreenRgb, resistanceBlueRgb, colorMode]);
 
   // Fungsi untuk membalik warna duotone
   const toggleReverse = useCallback(() => {
@@ -208,7 +247,7 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
     if (image) {
       applyDuotoneFilter();
     }
-  }, [image, isReversed, intensity, showOriginal, applyDuotoneFilter]);
+  }, [image, isReversed, intensity, showOriginal, applyDuotoneFilter, colorMode]);
 
   return (
     <>

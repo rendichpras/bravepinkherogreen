@@ -1,7 +1,6 @@
 "use client";
 
 
-import { ColorInfo } from "@/components/color-info";
 import { SocialTrendInfo } from "@/components/social-trend-info";
 import { SolidarityBanner } from "@/components/solidarity-banner";
 import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -60,9 +59,6 @@ export default function Home() {
           </CardHeader>
         </Card>
       </div>
-
-      {/* Informasi tentang warna Brave Pink dan Hero Green */}
-      <ColorInfo />
 
       <main className="w-full max-w-4xl flex flex-col items-center gap-6">
         <DuotoneProcessor bravePink={bravePink} heroGreen={heroGreen} />
