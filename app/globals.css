@@ -1,26 +1,215 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.625rem;
+  --background: #f8f9fa;
+  --foreground: #1f2937;
+  --card: #ffffff;
+  --card-foreground: #1f2937;
+  --popover: #ffffff;
+  --popover-foreground: #1f2937;
+  --primary: #FF85C4;
+  --primary-foreground: #ffffff;
+  --secondary: #045F33;
+  --secondary-foreground: #ffffff;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --accent: #f3f4f6;
+  --accent-foreground: #1f2937;
+  --destructive: #ef4444;
+  --border: #e5e7eb;
+  --input: #d1d5db;
+  --ring: #d1d5db;
+  --chart-1: #FF85C4;
+  --chart-2: #045F33;
+  --chart-3: #3b82f6;
+  --chart-4: #10b981;
+  --chart-5: #f59e0b;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1f2937;
+  --sidebar-primary: #FF85C4;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f3f4f6;
+  --sidebar-accent-foreground: #1f2937;
+  --sidebar-border: #e5e7eb;
+  --sidebar-ring: #d1d5db;
+  
+  /* Custom theme colors */
+  --brave-pink: #FF85C4;
+  --hero-green: #045F33;
+  --brave-pink-light: rgba(255, 133, 196, 0.1);
+  --hero-green-light: rgba(4, 95, 51, 0.1);
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+}
+
+.dark {
+  --background: #1a1a2e;
+  --foreground: #ffffff;
+  --card: #252547;
+  --card-foreground: #ffffff;
+  --popover: #252547;
+  --popover-foreground: #ffffff;
+  --primary: #FF85C4;
+  --primary-foreground: #ffffff;
+  --secondary: #045F33;
+  --secondary-foreground: #ffffff;
+  --muted: #323259;
+  --muted-foreground: #a1a1aa;
+  --accent: #323259;
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #6b7280;
+  --chart-1: #FF85C4;
+  --chart-2: #045F33;
+  --chart-3: #60a5fa;
+  --chart-4: #34d399;
+  --chart-5: #fbbf24;
+  --sidebar: #252547;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #FF85C4;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #323259;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #6b7280;
+  
+  /* Custom theme colors */
+  --brave-pink: #FF85C4;
+  --hero-green: #045F33;
+  --brave-pink-light: rgba(255, 133, 196, 0.2);
+  --hero-green-light: rgba(4, 95, 51, 0.2);
+  --gray-100: #323259;
+  --gray-200: #3f3f73;
+  --gray-300: #525283;
+  --gray-400: #7171a6;
+  --gray-500: #9494b8;
+  --gray-600: #b7b7d0;
+  --gray-700: #d4d4e8;
+  --gray-800: #f1f1fa;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Custom utility classes */
+  .bg-brave-pink {
+    background-color: var(--brave-pink);
+  }
+  .bg-hero-green {
+    background-color: var(--hero-green);
+  }
+  .bg-brave-pink-light {
+    background-color: var(--brave-pink-light);
+  }
+  .bg-hero-green-light {
+    background-color: var(--hero-green-light);
+  }
+  .text-brave-pink {
+    color: var(--brave-pink);
+  }
+  .text-hero-green {
+    color: var(--hero-green);
+  }
+  .border-brave-pink {
+    border-color: var(--brave-pink);
+  }
+  .border-hero-green {
+    border-color: var(--hero-green);
+  }
+  
+  /* Transition utilities */
+  .transition-all-smooth {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Custom switch styles */
+  .switch-brave-pink {
+    --switch-bg: var(--brave-pink);
+    --switch-bg-unchecked: var(--brave-pink);
+  }
+  
+  .switch-hero-green {
+    --switch-bg: var(--hero-green);
+    --switch-bg-unchecked: var(--hero-green);
+  }
+  
+  /* Override switch colors for better visibility */
+  [data-slot="switch"] {
+    background-color: var(--input) !important;
+  }
+  
+  [data-slot="switch"][data-state="checked"] {
+    background-color: var(--primary) !important;
+  }
+  
+  [data-slot="switch-thumb"] {
+    background-color: white !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Specific switch for color toggle */
+  .color-toggle-switch[data-state="checked"] {
+    background-color: var(--hero-green) !important;
+  }
+  
+  .color-toggle-switch[data-state="unchecked"] {
+    background-color: var(--brave-pink) !important;
+  }
 }

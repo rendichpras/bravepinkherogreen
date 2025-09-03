@@ -1,33 +1,47 @@
 import React from 'react';
 
 import { Heart } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 export function SolidarityBanner() {
   return (
-    <div className="w-full max-w-4xl mb-6 mt-2">
-      <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#FF85C4]/20 to-[#045F33]/20 backdrop-blur-md border border-white/5 p-4">
+    <div className="w-full max-w-4xl">
+      <Card className="relative overflow-hidden bg-gradient-to-r from-brave-pink-light to-hero-green-light border-border shadow-sm">
         {/* Decorative elements */}
-        <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-[#FF85C4]/20"></div>
-        <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-[#045F33]/20"></div>
+        <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-brave-pink-light"></div>
+        <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-hero-green-light"></div>
         
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Heart className="h-5 w-5 text-[#FF85C4]" />
-            <p className="text-sm font-medium text-white">
-              Bagikan Solidaritasmu
-            </p>
+        <CardContent className="py-4">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <Heart className="h-5 w-5 text-brave-pink" />
+              <p className="text-sm font-medium text-card-foreground">
+                Bagikan Solidaritasmu
+              </p>
+            </div>
+            
+            <div className="flex flex-wrap gap-2 text-xs">
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="h-8 rounded-full bg-brave-pink-light border-brave-pink/20 text-card-foreground px-2 sm:px-3 py-1.5 hover:bg-brave-pink/20 transition-all-smooth text-xs"
+                aria-label="Hashtag WargaJagaWarga"
+              >
+                #WargaJagaWarga
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="h-8 rounded-full bg-hero-green-light border-hero-green/20 text-card-foreground px-2 sm:px-3 py-1.5 hover:bg-hero-green/20 transition-all-smooth text-xs"
+                aria-label="Hashtag IndonesiaBerbenah"
+              >
+                #IndonesiaBerbenah
+              </Button>
+            </div>
           </div>
-          
-          <div className="flex flex-wrap gap-2 text-xs">
-            <span className="bg-white/10 border border-white/20 text-white px-2 py-1 rounded-full">
-              #WargaBantuWarga
-            </span>
-            <span className="bg-white/10 border border-white/20 text-white px-2 py-1 rounded-full">
-              #IndonesiaBerbenah
-            </span>
-          </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
