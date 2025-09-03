@@ -6,6 +6,7 @@ import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { ColorMode } from './duotone-processor';
 
 interface ImageEditorProps {
   onReset: () => void;
@@ -18,6 +19,8 @@ interface ImageEditorProps {
   canvasRef: React.RefObject<HTMLCanvasElement>;
   isProcessing: boolean;
   downloadImage: () => void;
+  colorMode: ColorMode;
+  setColorMode: (mode: ColorMode) => void;
 }
 
 export function ImageEditor({
@@ -30,7 +33,9 @@ export function ImageEditor({
   toggleOriginalPreview,
   canvasRef,
   isProcessing,
-  downloadImage
+  downloadImage,
+  colorMode,
+  setColorMode
 }: ImageEditorProps) {
   const [showDownloadSuccess, setShowDownloadSuccess] = useState(false);
   
@@ -94,6 +99,51 @@ export function ImageEditor({
           <CardTitle className="text-sm text-card-foreground">Pengaturan Filter</CardTitle>
         </CardHeader>
         <CardContent className="space-y-5 mb-2">
+          {/* Pilihan Mode Warna */}
+          <div>
+            <label className="text-sm font-medium text-card-foreground block mb-2">Pilihan Mode Warna</label>
+            <div className="grid grid-cols-3 gap-2">
+              <Button
+                type="button"
+                variant={colorMode === ColorMode.DUOTONE ? "default" : "outline"}
+                onClick={() => setColorMode(ColorMode.DUOTONE)}
+                className={cn(
+                  "h-auto py-2 px-2 relative overflow-hidden",
+                  colorMode === ColorMode.DUOTONE ? "border-2 border-brave-pink" : "border border-gray-200"
+                )}
+              >
+                <div className="w-full h-6 bg-gradient-to-r from-brave-pink to-hero-green rounded-sm"></div>
+                <span className="block text-xs mt-1">Duotone</span>
+              </Button>
+              
+              <Button
+                type="button"
+                variant={colorMode === ColorMode.PINK_ONLY ? "default" : "outline"}
+                onClick={() => setColorMode(ColorMode.PINK_ONLY)}
+                className={cn(
+                  "h-auto py-2 px-2 relative overflow-hidden",
+                  colorMode === ColorMode.PINK_ONLY ? "border-2 border-brave-pink" : "border border-gray-200"
+                )}
+              >
+                <div className="w-full h-6 bg-gradient-to-r from-black to-brave-pink rounded-sm"></div>
+                <span className="block text-xs mt-1">Pink</span>
+              </Button>
+              
+              <Button
+                type="button"
+                variant={colorMode === ColorMode.GREEN_ONLY ? "default" : "outline"}
+                onClick={() => setColorMode(ColorMode.GREEN_ONLY)}
+                className={cn(
+                  "h-auto py-2 px-2 relative overflow-hidden",
+                  colorMode === ColorMode.GREEN_ONLY ? "border-2 border-brave-pink" : "border border-gray-200"
+                )}
+              >
+                <div className="w-full h-6 bg-gradient-to-r from-black to-hero-green rounded-sm"></div>
+                <span className="block text-xs mt-1">Hijau</span>
+              </Button>
+            </div>
+          </div>
+
           {/* Intensity slider */}
           <div>
             <div className="flex items-center justify-between mb-2">
@@ -110,24 +160,26 @@ export function ImageEditor({
             />
           </div>
           
-          {/* Color direction toggle - simplified */}
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <label className="text-sm font-medium text-card-foreground">Balik Warna</label>
-              <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                <span className="inline-block w-3 h-3 rounded-full bg-brave-pink"></span>
-                <ArrowRightLeft className="w-3 h-3" />
-                <span className="inline-block w-3 h-3 rounded-full bg-hero-green"></span>
+          {/* Color direction toggle - hanya tampil jika mode duotone */}
+          {colorMode === ColorMode.DUOTONE && (
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <label className="text-sm font-medium text-card-foreground">Balik Warna</label>
+                <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                  <span className="inline-block w-3 h-3 rounded-full bg-brave-pink"></span>
+                  <ArrowRightLeft className="w-3 h-3" />
+                  <span className="inline-block w-3 h-3 rounded-full bg-hero-green"></span>
+                </div>
               </div>
+              <Switch 
+                checked={isReversed} 
+                onCheckedChange={toggleReverse}
+                aria-label="Balik warna"
+                title="Balik warna"
+                className="color-toggle-switch transition-colors duration-200"
+              />
             </div>
-            <Switch 
-              checked={isReversed} 
-              onCheckedChange={toggleReverse}
-              aria-label="Balik warna"
-              title="Balik warna"
-              className="color-toggle-switch transition-colors duration-200"
-            />
-          </div>
+          )}
         </CardContent>
         
         <CardFooter className="flex flex-col sm:flex-row gap-4">

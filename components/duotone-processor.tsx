@@ -10,6 +10,13 @@ interface DuotoneProcessorProps {
   heroGreen: string;
 }
 
+// Enum untuk mode warna
+export enum ColorMode {
+  DUOTONE = "duotone", // Kedua warna (Brave Pink & Hero Green)
+  PINK_ONLY = "pink_only", // Hanya Brave Pink
+  GREEN_ONLY = "green_only" // Hanya Hero Green
+}
+
 export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps) {
   const [image, setImage] = useState<string | null>(null);
   const [originalImage, setOriginalImage] = useState<string | null>(null);
@@ -17,6 +24,7 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
   const [isReversed, setIsReversed] = useState(false);
   const [intensity, setIntensity] = useState(100);
   const [showOriginal, setShowOriginal] = useState(false);
+  const [colorMode, setColorMode] = useState<ColorMode>(ColorMode.DUOTONE);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const imageCache = useRef<HTMLImageElement | null>(null);
 
@@ -98,9 +106,27 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const data = imageData.data;
 
-      // Tentukan warna berdasarkan mode isReversed
-      const color1 = isReversed ? heroGreenRgb : bravePinkRgb;
-      const color2 = isReversed ? bravePinkRgb : heroGreenRgb;
+      // Tentukan warna berdasarkan mode warna yang dipilih
+      let color1, color2;
+      
+      switch (colorMode) {
+        case ColorMode.PINK_ONLY:
+          // Hanya warna Brave Pink (untuk shadow ke highlight)
+          color1 = { r: 0, g: 0, b: 0 }; // Hitam untuk shadow
+          color2 = bravePinkRgb; // Brave Pink untuk highlight
+          break;
+        case ColorMode.GREEN_ONLY:
+          // Hanya warna Hero Green (untuk shadow ke highlight)
+          color1 = { r: 0, g: 0, b: 0 }; // Hitam untuk shadow
+          color2 = heroGreenRgb; // Hero Green untuk highlight
+          break;
+        case ColorMode.DUOTONE:
+        default:
+          // Mode duotone normal (dua warna)
+          color1 = isReversed ? heroGreenRgb : bravePinkRgb;
+          color2 = isReversed ? bravePinkRgb : heroGreenRgb;
+          break;
+      }
 
       // Proses gambar dengan metode batch
       const intensityFactor = intensity / 100;
@@ -113,7 +139,7 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
     } finally {
       setIsProcessing(false);
     }
-  }, [image, originalImage, isReversed, showOriginal, intensity, bravePinkRgb, heroGreenRgb]);
+  }, [image, originalImage, isReversed, showOriginal, intensity, bravePinkRgb, heroGreenRgb, colorMode]);
 
   // Fungsi untuk membalik warna duotone
   const toggleReverse = useCallback(() => {
@@ -146,12 +172,18 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
     setIsReversed(false);
     setIntensity(100);
     setShowOriginal(false);
+    setColorMode(ColorMode.DUOTONE);
     imageCache.current = null;
   }, []);
 
   // Fungsi untuk mengubah intensitas dengan debounce
   const handleIntensityChange = useCallback((value: number) => {
     setIntensity(value);
+  }, []);
+  
+  // Fungsi untuk mengubah mode warna
+  const handleColorModeChange = useCallback((mode: ColorMode) => {
+    setColorMode(mode);
   }, []);
 
   // Menerapkan filter setiap kali parameter berubah
@@ -177,6 +209,8 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
           canvasRef={canvasRef as React.RefObject<HTMLCanvasElement>}
           isProcessing={isProcessing}
           downloadImage={downloadImage}
+          colorMode={colorMode}
+          setColorMode={handleColorModeChange}
         />
       )}
     </>
