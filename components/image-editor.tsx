@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import { Download, RefreshCw, ArrowRightLeft, Check } from 'lucide-react';
 import { Button } from './ui/button';
 import { Slider } from './ui/slider';
@@ -43,12 +43,7 @@ export function ImageEditor({
   return (
     <div className="w-full flex flex-col items-center">
       {/* Preview panel */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="relative w-full max-w-4xl mb-6 rounded-xl overflow-hidden shadow-xl border border-white/5"
-      >
+      <div className="relative w-full max-w-4xl mb-6 rounded-xl overflow-hidden shadow-xl border border-white/5">
         <div className="absolute top-3 right-3 z-10 bg-black/60 backdrop-blur-md rounded-md px-3 py-1 text-xs sm:text-sm font-medium">
           {showOriginal ? "Asli" : "Duotone"}
         </div>
@@ -61,11 +56,7 @@ export function ImageEditor({
         {isProcessing && (
           <div className="absolute inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm">
             <div className="flex flex-col items-center">
-              <motion.div 
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                className="h-10 w-10 rounded-full border-t-2 border-b-2 border-[#FF85C4]"
-              />
+              <div className="h-10 w-10 rounded-full border-t-2 border-b-2 border-[#FF85C4] animate-spin" />
               <p className="mt-3 text-sm text-white">Memproses...</p>
             </div>
           </div>
@@ -90,7 +81,7 @@ export function ImageEditor({
             Asli
           </span>
         </div>
-      </motion.div>
+      </div>
 
       {/* Controls panel */}
       <Card className="w-full max-w-4xl bg-white/5 backdrop-blur-md border-white/5">
@@ -136,29 +127,16 @@ export function ImageEditor({
               disabled={isProcessing}
               className="flex items-center justify-center gap-2 relative"
             >
-              <AnimatePresence mode="wait">
-                {showDownloadSuccess ? (
-                  <motion.div
-                    key="success"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    exit={{ scale: 0 }}
-                    className="absolute inset-0 flex items-center justify-center bg-green-500 rounded-md"
-                  >
+              {showDownloadSuccess ? (
+                  <div className="absolute inset-0 flex items-center justify-center bg-green-500 rounded-md">
                     <Check className="h-4 w-4 text-white" />
-                  </motion.div>
+                  </div>
                 ) : (
-                  <motion.div
-                    key="download"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="flex items-center justify-center gap-2"
-                  >
+                  <div className="flex items-center justify-center gap-2">
                     <Download className="h-4 w-4" />
                     <span>Unduh</span>
-                  </motion.div>
+                  </div>
                 )}
-              </AnimatePresence>
             </Button>
             
             <Button

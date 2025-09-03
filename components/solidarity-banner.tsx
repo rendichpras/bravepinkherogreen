@@ -1,15 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+
 import { Heart } from 'lucide-react';
 
 export function SolidarityBanner() {
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.5, delay: 0.4 }}
-      className="w-full max-w-4xl mb-6 mt-2"
-    >
+    <div className="w-full max-w-4xl mb-6 mt-2">
       <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-[#FF85C4]/20 to-[#045F33]/20 backdrop-blur-md border border-white/5 p-4">
         {/* Decorative elements */}
         <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-[#FF85C4]/20"></div>
@@ -33,6 +28,6 @@ export function SolidarityBanner() {
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

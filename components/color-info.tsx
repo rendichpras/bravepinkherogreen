@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import { Info, ChevronDown, ChevronUp } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
 
@@ -11,12 +11,7 @@ export function ColorInfo() {
   };
   
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-      className="w-full max-w-4xl mb-4 sm:mb-6"
-    >
+    <div className="w-full max-w-4xl mb-4 sm:mb-6">
       <Card className="bg-white/5 backdrop-blur-md border-white/5">
         <CardContent className="p-3 sm:p-5">
           {/* Header - Always visible */}
@@ -36,15 +31,8 @@ export function ColorInfo() {
           </div>
           
           {/* Expandable content */}
-          <AnimatePresence>
-            {isExpanded && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden"
-              >
+          {isExpanded && (
+              <div className="overflow-hidden">
                 <div className="pt-3 space-y-3 text-xs sm:text-sm border-t border-white/10 mt-3">
                   <div className="space-y-2">
                     <div className="flex items-start gap-2">
@@ -74,11 +62,10 @@ export function ColorInfo() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             )}
-          </AnimatePresence>
         </CardContent>
       </Card>
-    </motion.div>
+    </div>
   );
 }

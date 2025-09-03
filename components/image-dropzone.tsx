@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { motion } from 'framer-motion';
+
 import { Upload } from 'lucide-react';
 import { Button } from './ui/button';
 import { cn } from '@/lib/utils';
@@ -39,12 +39,7 @@ export function ImageDropzone({ onImageDrop, className }: ImageDropzoneProps) {
     >
       <input {...getInputProps()} />
       
-      <motion.div 
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3 }}
-        className="mb-4"
-      >
+      <div className="mb-4">
         <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-white/10 flex items-center justify-center">
           <Upload className="h-8 w-8 text-gray-400" />
         </div>
@@ -57,7 +52,7 @@ export function ImageDropzone({ onImageDrop, className }: ImageDropzoneProps) {
             : "Tarik dan lepas atau klik untuk memilih"
           }
         </p>
-      </motion.div>
+      </div>
       
       <Button variant="pink" size="sm" className="flex items-center gap-2 mt-2">
         <Upload className="h-4 w-4" />
