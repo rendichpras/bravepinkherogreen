@@ -109,28 +109,31 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
       // Tentukan warna berdasarkan mode warna yang dipilih
       let color1, color2;
       
+      // Abu-abu gelap untuk shadow (bukan hitam pekat)
+      const darkGray = { r: 40, g: 40, b: 40 };
+      
       switch (colorMode) {
         case ColorMode.PINK_ONLY:
           // Hanya warna Brave Pink (untuk shadow ke highlight)
           if (isReversed) {
-            // Mode dibalik: Brave Pink untuk shadow, hitam untuk highlight
+            // Mode dibalik: Brave Pink untuk shadow, abu-abu gelap untuk highlight
             color1 = bravePinkRgb; // Brave Pink untuk shadow
-            color2 = { r: 0, g: 0, b: 0 }; // Hitam untuk highlight
+            color2 = darkGray; // Abu-abu gelap untuk highlight
           } else {
-            // Mode normal: Hitam untuk shadow, Brave Pink untuk highlight
-            color1 = { r: 0, g: 0, b: 0 }; // Hitam untuk shadow
+            // Mode normal: Abu-abu gelap untuk shadow, Brave Pink untuk highlight
+            color1 = darkGray; // Abu-abu gelap untuk shadow
             color2 = bravePinkRgb; // Brave Pink untuk highlight
           }
           break;
         case ColorMode.GREEN_ONLY:
           // Hanya warna Hero Green (untuk shadow ke highlight)
           if (isReversed) {
-            // Mode dibalik: Hero Green untuk shadow, hitam untuk highlight
+            // Mode dibalik: Hero Green untuk shadow, abu-abu gelap untuk highlight
             color1 = heroGreenRgb; // Hero Green untuk shadow
-            color2 = { r: 0, g: 0, b: 0 }; // Hitam untuk highlight
+            color2 = darkGray; // Abu-abu gelap untuk highlight
           } else {
-            // Mode normal: Hitam untuk shadow, Hero Green untuk highlight
-            color1 = { r: 0, g: 0, b: 0 }; // Hitam untuk shadow
+            // Mode normal: Abu-abu gelap untuk shadow, Hero Green untuk highlight
+            color1 = darkGray; // Abu-abu gelap untuk shadow
             color2 = heroGreenRgb; // Hero Green untuk highlight
           }
           break;

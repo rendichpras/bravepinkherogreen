@@ -125,7 +125,7 @@ export function ImageEditor({
                   colorMode === ColorMode.PINK_ONLY ? "border-2 border-brave-pink" : "border border-gray-200"
                 )}
               >
-                <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-brave-pink to-black" : "bg-gradient-to-r from-black to-brave-pink"} rounded-sm`}></div>
+                <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-brave-pink to-gray-800" : "bg-gradient-to-r from-gray-800 to-brave-pink"} rounded-sm`}></div>
                 <span className="block text-xs mt-1">Pink</span>
               </Button>
               
@@ -138,7 +138,7 @@ export function ImageEditor({
                   colorMode === ColorMode.GREEN_ONLY ? "border-2 border-brave-pink" : "border border-gray-200"
                 )}
               >
-                <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-hero-green to-black" : "bg-gradient-to-r from-black to-hero-green"} rounded-sm`}></div>
+                <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-hero-green to-gray-800" : "bg-gradient-to-r from-gray-800 to-hero-green"} rounded-sm`}></div>
                 <span className="block text-xs mt-1">Hijau</span>
               </Button>
             </div>
@@ -175,14 +175,14 @@ export function ImageEditor({
                 ) : colorMode === ColorMode.PINK_ONLY ? (
                   // Icon untuk mode pink
                   <>
-                    <span className="inline-block w-3 h-3 rounded-full bg-black"></span>
+                    <span className="inline-block w-3 h-3 rounded-full bg-gray-800"></span>
                     <ArrowRightLeft className="w-3 h-3" />
                     <span className="inline-block w-3 h-3 rounded-full bg-brave-pink"></span>
                   </>
                 ) : (
                   // Icon untuk mode hijau
                   <>
-                    <span className="inline-block w-3 h-3 rounded-full bg-black"></span>
+                    <span className="inline-block w-3 h-3 rounded-full bg-gray-800"></span>
                     <ArrowRightLeft className="w-3 h-3" />
                     <span className="inline-block w-3 h-3 rounded-full bg-hero-green"></span>
                   </>
