@@ -70,22 +70,18 @@ export default function Home() {
       <SolidarityBanner />
 
       <footer className="mt-auto pt-6 pb-4 text-center w-full max-w-4xl">
-        <Card className="bg-card border-border shadow-sm">
-          <CardHeader className="py-3">
-            <CardDescription className="text-muted-foreground text-xs">
-              Dibuat dengan 💖 oleh{" "}
-              <a
-                href="https://instagram.com/rendiichtiar"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-brave-pink hover:underline transition-all-smooth"
-              >
-                @rendiichtiar
-              </a>{" "}
-              untuk indonesia
-            </CardDescription>
-          </CardHeader>
-        </Card>
+        <p className="text-muted-foreground text-xs">
+          Dibuat dengan 💖 oleh{" "}
+          <a
+            href="https://instagram.com/rendiichtiar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brave-pink hover:underline transition-all-smooth"
+          >
+            @rendiichtiar
+          </a>{" "}
+          untuk Indonesia
+        </p>
       </footer>
     </div>
   );

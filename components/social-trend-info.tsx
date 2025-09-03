@@ -15,21 +15,21 @@ export function SocialTrendInfo() {
                 <div className="flex items-start gap-2">
                   <span className="inline-block w-3 h-3 rounded-full bg-brave-pink mt-0.5" aria-hidden="true"></span>
                   <p className="text-card-foreground">
-                    <span className="font-medium">Brave Pink</span> - Warna ini terinspirasi dari sosok Ibu Ana yang dikenal berani menyuarakan aspirasinya.
+                    <span className="font-medium">Brave Pink</span> - Terinspirasi dari Ibu Ana, seorang ibu berjilbab merah muda yang berani berdiri di depan barikade polisi saat demonstrasi 28 Agustus 2025. Warna pink, yang biasanya melambangkan kelembutan, diubah menjadi simbol keberanian sipil.
                   </p>
                 </div>
                 
                 <div className="flex items-start gap-2">
                   <span className="inline-block w-3 h-3 rounded-full bg-hero-green mt-0.5" aria-hidden="true"></span>
                   <p className="text-card-foreground">
-                    <span className="font-medium">Hero Green</span> - Warna ini terinspirasi dari para pengemudi ojek online yang bersolidaritas tinggi.
+                    <span className="font-medium">Hero Green</span> - Menghormati memori Affan Kurniawan, seorang driver ojek online yang meninggal dilindas kendaraan taktis Brimob saat unjuk rasa. Hijau, warna khas jaket ojol, kini menjadi representasi solidaritas, harapan, dan kekuatan dari tragedi.
                   </p>
                 </div>
                 
                 <div className="flex items-start gap-2">
                   <span className="inline-block w-3 h-3 rounded-full mt-0.5" style={{ backgroundColor: "#0038A8" }} aria-hidden="true"></span>
                   <p className="text-card-foreground">
-                    <span className="font-medium" style={{ color: "#0038A8" }}>Resistance Blue</span> - Warna biru yang melambangkan perlawanan dan harapan, terinspirasi dari warna bendera.
+                    <span className="font-medium" style={{ color: "#0038A8" }}>Resistance Blue</span> - Merujuk pada simbol Protes &quot;Peringatan Darurat Demokrasi&quot; yang muncul sejak pertengahan 2024—menampilkan burung Garuda dengan latar biru sebagai lambang perlawanan terhadap upaya penurunan kualitas demokrasi.
                   </p>
                 </div>
                 
