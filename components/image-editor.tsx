@@ -177,19 +177,15 @@ export function ImageEditor({
               <div className="space-y-1.5 text-gray-700 pl-1">
                 <p className="flex items-start">
                   <span className="text-brave-pink mr-1.5">•</span> 
-                  <span><strong>Browser biasa:</strong> Klik tombol Unduh</span>
+                  <span>Klik tombol Unduh untuk menyimpan gambar</span>
                 </p>
                 <p className="flex items-start">
                   <span className="text-brave-pink mr-1.5">•</span> 
-                  <span><strong>Browser Instagram/Facebook:</strong> Klik Unduh, lalu tekan lama pada gambar yang muncul</span>
+                  <span>Jika tidak bisa, coba buka aplikasi ini di browser Chrome/Safari/Firefox</span>
                 </p>
                 <p className="flex items-start">
                   <span className="text-brave-pink mr-1.5">•</span> 
-                  <span><strong>Jika tidak bisa:</strong> Coba buka aplikasi ini di browser Chrome/Safari</span>
-                </p>
-                <p className="flex items-start">
-                  <span className="text-brave-pink mr-1.5">•</span> 
-                  <span><strong>Tetap tidak bisa?</strong> Ambil screenshot gambar dari layar Anda</span>
+                  <span>Tetap tidak bisa? Ambil screenshot gambar dari layar Anda</span>
                 </p>
               </div>
             </div>

@@ -125,81 +125,17 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
     setShowOriginal(prev => !prev);
   }, []);
 
-  // Fungsi untuk mengunduh gambar yang berfungsi di semua browser termasuk in-app browser
+  // Fungsi untuk mengunduh gambar
   const downloadImage = useCallback(() => {
     if (!canvasRef.current) return;
 
     try {
-      // Mendapatkan data URL dari canvas
-      const dataUrl = canvasRef.current.toDataURL("image/png");
-      
-      // Metode 1: Menggunakan a.click() (metode standar)
       const link = document.createElement("a");
       link.download = "duotone-image.png";
-      link.href = dataUrl;
-      
-      // Metode 2: Untuk browser yang tidak mendukung a.click()
-      // Tambahkan link ke DOM, klik, lalu hapus (lebih kompatibel)
-      document.body.appendChild(link);
+      link.href = canvasRef.current.toDataURL("image/png");
       link.click();
-      document.body.removeChild(link);
-      
-      // Metode 3: Fallback untuk browser in-app seperti IG, FB, dll
-      // Buka gambar di tab baru dan berikan instruksi untuk menyimpan
-      if (navigator.userAgent.match(/(Instagram|FBAV|FBAN|Line|KAKAOTALK|NAVER|Snapchat|Pinterest|Twitter|WhatsApp|WeChat)/i)) {
-        // Simpan referensi ke tab baru untuk mencegah pemblokiran popup
-        const newTab = window.open();
-        if (newTab) {
-          newTab.document.write(`
-            <html>
-              <head>
-                <title>Simpan Gambar</title>
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <style>
-                  body { font-family: system-ui, sans-serif; margin: 0; padding: 20px; background-color: #fafafa; }
-                  h2 { text-align: center; color: #FF85C4; margin-bottom: 20px; }
-                  img { max-width: 100%; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-                  .instructions { background: #fff9fb; padding: 20px; border-radius: 8px; margin-bottom: 20px; text-align: left; border: 1px solid rgba(255,133,196,0.3); box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-                  .instructions p { margin: 8px 0; }
-                  .instructions p strong { color: #FF85C4; }
-                  .step { display: flex; align-items: flex-start; margin-bottom: 10px; }
-                  .step-number { background: #FF85C4; color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 10px; font-weight: bold; flex-shrink: 0; }
-                  .step-text { flex: 1; }
-                </style>
-              </head>
-              <body>
-                <h2>Gambar Duotone Anda</h2>
-                <div class="instructions">
-                  <p><strong>Cara Menyimpan Gambar:</strong></p>
-                  <div class="step">
-                    <div class="step-number">1</div>
-                    <div class="step-text">Tekan lama pada gambar di bawah</div>
-                  </div>
-                  <div class="step">
-                    <div class="step-number">2</div>
-                    <div class="step-text">Pilih "Simpan Gambar" atau "Download"</div>
-                  </div>
-                  <div class="step">
-                    <div class="step-number">3</div>
-                    <div class="step-text">Jika tidak bisa, ambil screenshot gambar dari layar Anda</div>
-                  </div>
-                </div>
-                <img src="${dataUrl}" alt="Duotone Image" />
-              </body>
-            </html>
-          `);
-          newTab.document.close();
-        }
-      }
     } catch (error) {
       console.error("Error downloading image:", error);
-      
-      // Fallback terakhir: Buka gambar di tab baru jika semua metode gagal
-      try {
-        window.open(canvasRef.current.toDataURL("image/png"));
-      } catch (fallbackError) {
-        console.error("Fallback error:", fallbackError);
-      }
     }
   }, []);
 
