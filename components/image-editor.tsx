@@ -112,7 +112,7 @@ export function ImageEditor({
                   colorMode === ColorMode.DUOTONE ? "border-2 border-brave-pink" : "border border-gray-200"
                 )}
               >
-                <div className="w-full h-6 bg-gradient-to-r from-brave-pink to-hero-green rounded-sm"></div>
+                <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-hero-green to-brave-pink" : "bg-gradient-to-r from-brave-pink to-hero-green"} rounded-sm`}></div>
                 <span className="block text-xs mt-1">Duotone</span>
               </Button>
               
@@ -125,7 +125,7 @@ export function ImageEditor({
                   colorMode === ColorMode.PINK_ONLY ? "border-2 border-brave-pink" : "border border-gray-200"
                 )}
               >
-                <div className="w-full h-6 bg-gradient-to-r from-black to-brave-pink rounded-sm"></div>
+                <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-brave-pink to-black" : "bg-gradient-to-r from-black to-brave-pink"} rounded-sm`}></div>
                 <span className="block text-xs mt-1">Pink</span>
               </Button>
               
@@ -138,7 +138,7 @@ export function ImageEditor({
                   colorMode === ColorMode.GREEN_ONLY ? "border-2 border-brave-pink" : "border border-gray-200"
                 )}
               >
-                <div className="w-full h-6 bg-gradient-to-r from-black to-hero-green rounded-sm"></div>
+                <div className={`w-full h-6 ${isReversed ? "bg-gradient-to-r from-hero-green to-black" : "bg-gradient-to-r from-black to-hero-green"} rounded-sm`}></div>
                 <span className="block text-xs mt-1">Hijau</span>
               </Button>
             </div>
@@ -160,26 +160,43 @@ export function ImageEditor({
             />
           </div>
           
-          {/* Color direction toggle - hanya tampil jika mode duotone */}
-          {colorMode === ColorMode.DUOTONE && (
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                <label className="text-sm font-medium text-card-foreground">Balik Warna</label>
-                <div className="flex items-center gap-1 text-xs text-muted-foreground">
-                  <span className="inline-block w-3 h-3 rounded-full bg-brave-pink"></span>
-                  <ArrowRightLeft className="w-3 h-3" />
-                  <span className="inline-block w-3 h-3 rounded-full bg-hero-green"></span>
-                </div>
+          {/* Color direction toggle - untuk semua mode warna */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <label className="text-sm font-medium text-card-foreground">Balik Warna</label>
+              <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                {colorMode === ColorMode.DUOTONE ? (
+                  // Icon untuk mode duotone
+                  <>
+                    <span className="inline-block w-3 h-3 rounded-full bg-brave-pink"></span>
+                    <ArrowRightLeft className="w-3 h-3" />
+                    <span className="inline-block w-3 h-3 rounded-full bg-hero-green"></span>
+                  </>
+                ) : colorMode === ColorMode.PINK_ONLY ? (
+                  // Icon untuk mode pink
+                  <>
+                    <span className="inline-block w-3 h-3 rounded-full bg-black"></span>
+                    <ArrowRightLeft className="w-3 h-3" />
+                    <span className="inline-block w-3 h-3 rounded-full bg-brave-pink"></span>
+                  </>
+                ) : (
+                  // Icon untuk mode hijau
+                  <>
+                    <span className="inline-block w-3 h-3 rounded-full bg-black"></span>
+                    <ArrowRightLeft className="w-3 h-3" />
+                    <span className="inline-block w-3 h-3 rounded-full bg-hero-green"></span>
+                  </>
+                )}
               </div>
-              <Switch 
-                checked={isReversed} 
-                onCheckedChange={toggleReverse}
-                aria-label="Balik warna"
-                title="Balik warna"
-                className="color-toggle-switch transition-colors duration-200"
-              />
             </div>
-          )}
+            <Switch 
+              checked={isReversed} 
+              onCheckedChange={toggleReverse}
+              aria-label="Balik warna"
+              title="Balik warna"
+              className="color-toggle-switch transition-colors duration-200"
+            />
+          </div>
         </CardContent>
         
         <CardFooter className="flex flex-col sm:flex-row gap-4">

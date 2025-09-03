@@ -112,13 +112,27 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
       switch (colorMode) {
         case ColorMode.PINK_ONLY:
           // Hanya warna Brave Pink (untuk shadow ke highlight)
-          color1 = { r: 0, g: 0, b: 0 }; // Hitam untuk shadow
-          color2 = bravePinkRgb; // Brave Pink untuk highlight
+          if (isReversed) {
+            // Mode dibalik: Brave Pink untuk shadow, hitam untuk highlight
+            color1 = bravePinkRgb; // Brave Pink untuk shadow
+            color2 = { r: 0, g: 0, b: 0 }; // Hitam untuk highlight
+          } else {
+            // Mode normal: Hitam untuk shadow, Brave Pink untuk highlight
+            color1 = { r: 0, g: 0, b: 0 }; // Hitam untuk shadow
+            color2 = bravePinkRgb; // Brave Pink untuk highlight
+          }
           break;
         case ColorMode.GREEN_ONLY:
           // Hanya warna Hero Green (untuk shadow ke highlight)
-          color1 = { r: 0, g: 0, b: 0 }; // Hitam untuk shadow
-          color2 = heroGreenRgb; // Hero Green untuk highlight
+          if (isReversed) {
+            // Mode dibalik: Hero Green untuk shadow, hitam untuk highlight
+            color1 = heroGreenRgb; // Hero Green untuk shadow
+            color2 = { r: 0, g: 0, b: 0 }; // Hitam untuk highlight
+          } else {
+            // Mode normal: Hitam untuk shadow, Hero Green untuk highlight
+            color1 = { r: 0, g: 0, b: 0 }; // Hitam untuk shadow
+            color2 = heroGreenRgb; // Hero Green untuk highlight
+          }
           break;
         case ColorMode.DUOTONE:
         default:
