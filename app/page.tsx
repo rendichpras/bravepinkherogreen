@@ -27,6 +27,18 @@ export default function Home() {
             <CardDescription className="text-center text-muted-foreground">
               Ikuti tren media sosial Indonesia dengan warna Brave Pink & Hero Green
             </CardDescription>
+            
+            {/* Peringatan dan Tips */}
+            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <div className="text-sm text-blue-800 font-medium mb-1">
+                ⚠️ Peringatan Penting:
+              </div>
+              <div className="text-xs text-blue-700 space-y-1">
+                <p>• Foto yang diunggah <strong>tidak tersimpan di server</strong>, semua proses dilakukan di browser Anda</p>
+                <p>• Pastikan menggunakan browser modern seperti Chrome, Safari, Firefox, atau Edge</p>
+                <p>• Jika tombol unduh tidak berfungsi, coba buka di browser eksternal</p>
+              </div>
+            </div>
           </CardHeader>
         </Card>
       </div>

@@ -161,6 +161,15 @@ export function ImageEditor({
             <span>Ganti</span>
           </Button>
         </CardFooter>
+        
+        {/* Info Download */}
+        <div className="px-6 pb-4">
+          <div className="p-2 bg-gray-50 border border-gray-200 rounded-md">
+            <div className="text-xs text-gray-600 text-center">
+              <span className="font-medium">Tidak bisa diunduh?</span> Gunakan browser eksternal seperti Chrome, Safari, Firefox, atau Edge
+            </div>
+          </div>
+        </div>
       </Card>
     </div>
   );

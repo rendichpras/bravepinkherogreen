@@ -88,8 +88,15 @@
   --gray-400: #9ca3af;
   --gray-500: #6b7280;
   --gray-600: #4b5563;
-  --gray-700: #374151;
-  --gray-800: #1f2937;
+      --gray-700: #374151;
+    --gray-800: #1f2937;
+    
+    /* Blue colors for info/warning */
+    --blue-50: #EFF6FF;
+    --blue-200: #BFDBFE;
+    --blue-600: #2563EB;
+    --blue-700: #3b82f6;
+    --blue-800: #1E40AF;
 }
 
 .dark {
@@ -172,6 +179,20 @@
   }
   .border-hero-green {
     border-color: var(--hero-green);
+  }
+  
+  /* Blue utility classes */
+  .bg-blue-50 {
+    background-color: var(--blue-50);
+  }
+  .border-blue-200 {
+    border-color: var(--blue-200);
+  }
+  .text-blue-700 {
+    color: var(--blue-700);
+  }
+  .text-blue-800 {
+    color: var(--blue-800);
   }
   
   /* Transition utilities */
