@@ -164,9 +164,34 @@ export function ImageEditor({
         
         {/* Info Download */}
         <div className="px-6 pb-4">
-          <div className="p-2 bg-gray-50 border border-gray-200 rounded-md">
-            <div className="text-xs text-gray-600 text-center">
-              <span className="font-medium">Tidak bisa diunduh?</span> Gunakan browser eksternal seperti Chrome, Safari, Firefox, atau Edge
+          <div className="p-3 bg-brave-pink/10 border border-brave-pink/30 rounded-md shadow-sm">
+            <div className="text-xs text-left">
+              <p className="font-medium mb-2 text-sm text-brave-pink flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Cara Mengunduh Gambar:
+              </p>
+              <div className="space-y-1.5 text-gray-700 pl-1">
+                <p className="flex items-start">
+                  <span className="text-brave-pink mr-1.5">•</span> 
+                  <span><strong>Browser biasa:</strong> Klik tombol Unduh</span>
+                </p>
+                <p className="flex items-start">
+                  <span className="text-brave-pink mr-1.5">•</span> 
+                  <span><strong>Browser Instagram/Facebook:</strong> Klik Unduh, lalu tekan lama pada gambar yang muncul</span>
+                </p>
+                <p className="flex items-start">
+                  <span className="text-brave-pink mr-1.5">•</span> 
+                  <span><strong>Jika tidak bisa:</strong> Coba buka aplikasi ini di browser Chrome/Safari</span>
+                </p>
+                <p className="flex items-start">
+                  <span className="text-brave-pink mr-1.5">•</span> 
+                  <span><strong>Tetap tidak bisa?</strong> Ambil screenshot gambar dari layar Anda</span>
+                </p>
+              </div>
             </div>
           </div>
         </div>

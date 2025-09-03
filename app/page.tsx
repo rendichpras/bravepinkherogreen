@@ -29,14 +29,32 @@ export default function Home() {
             </CardDescription>
             
             {/* Peringatan dan Tips */}
-            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
-              <div className="text-sm text-blue-800 font-medium mb-1">
-                ⚠️ Peringatan Penting:
-              </div>
-              <div className="text-xs text-blue-700 space-y-1">
-                <p>• Foto yang diunggah <strong>tidak tersimpan di server</strong>, semua proses dilakukan di browser Anda</p>
-                <p>• Pastikan menggunakan browser modern seperti Chrome, Safari, Firefox, atau Edge</p>
-                <p>• Jika tombol unduh tidak berfungsi, coba buka di browser eksternal</p>
+            <div className="mt-4">
+              <div className="p-3 bg-hero-green/10 border border-hero-green/30 rounded-md shadow-sm">
+                <div className="text-xs text-left">
+                  <p className="font-medium mb-2 text-sm text-hero-green flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                      <line x1="12" y1="9" x2="12" y2="13"></line>
+                      <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                    </svg>
+                    Peringatan Penting:
+                  </p>
+                  <div className="space-y-1.5 text-gray-700 pl-1">
+                    <p className="flex items-start">
+                      <span className="text-hero-green mr-1.5">•</span> 
+                      <span>Foto yang diunggah <strong>tidak tersimpan di server</strong>, semua proses dilakukan di browser Anda</span>
+                    </p>
+                    <p className="flex items-start">
+                      <span className="text-hero-green mr-1.5">•</span> 
+                      <span>Pastikan menggunakan browser modern seperti Chrome, Safari, Firefox, atau Edge</span>
+                    </p>
+                    <p className="flex items-start">
+                      <span className="text-hero-green mr-1.5">•</span> 
+                      <span>Jika tombol unduh tidak berfungsi, coba buka di browser eksternal</span>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </CardHeader>
