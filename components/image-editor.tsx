@@ -293,30 +293,34 @@ export function ImageEditor({
           </Button>
         </CardFooter>
         
-        {/* Info Download */}
+        {/* Info Download & Peringatan */}
         <div className="px-6 pb-4">
-          <div className="p-3 bg-brave-pink/10 border border-brave-pink/30 rounded-md shadow-sm">
+          <div className="p-3 bg-hero-green/10 border border-hero-green/30 rounded-md shadow-sm">
             <div className="text-xs text-left">
-              <p className="font-medium mb-2 text-sm text-brave-pink flex items-center">
+              <p className="font-medium mb-2 text-sm text-hero-green flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                  <line x1="12" y1="9" x2="12" y2="13"></line>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
                 </svg>
-                Cara Mengunduh Gambar:
+                Info Penting & Cara Download:
               </p>
               <div className="space-y-1.5 text-gray-700 pl-1">
                 <p className="flex items-start">
-                  <span className="text-brave-pink mr-1.5">•</span> 
+                  <span className="text-hero-green mr-1.5">•</span> 
+                  <span>Foto <strong>tidak tersimpan di server</strong>, semua proses di browser Anda</span>
+                </p>
+                <p className="flex items-start">
+                  <span className="text-hero-green mr-1.5">•</span> 
                   <span>Klik tombol Unduh untuk menyimpan gambar</span>
                 </p>
                 <p className="flex items-start">
-                  <span className="text-brave-pink mr-1.5">•</span> 
-                  <span>Jika tidak bisa, coba buka aplikasi ini di browser Chrome/Safari/Firefox</span>
+                  <span className="text-hero-green mr-1.5">•</span> 
+                  <span>Gunakan browser modern (Chrome, Safari, Firefox, Edge)</span>
                 </p>
                 <p className="flex items-start">
-                  <span className="text-brave-pink mr-1.5">•</span> 
-                  <span>Tetap tidak bisa? Ambil screenshot gambar dari layar Anda</span>
+                  <span className="text-hero-green mr-1.5">•</span> 
+                  <span>Jika gagal, ambil screenshot dari layar Anda</span>
                 </p>
               </div>
             </div>

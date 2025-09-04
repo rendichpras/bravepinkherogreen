@@ -250,25 +250,27 @@ export function DuotoneProcessor({ bravePink, heroGreen }: DuotoneProcessorProps
   }, [image, isReversed, intensity, showOriginal, applyDuotoneFilter, colorMode]);
 
   return (
-    <>
+    <div className="w-full space-y-4">
       {!image ? (
         <ImageDropzone onImageDrop={processFile} />
       ) : (
-        <ImageEditor
-          onReset={resetImage}
-          isReversed={isReversed}
-          toggleReverse={toggleReverse}
-          intensity={intensity}
-          setIntensity={handleIntensityChange}
-          showOriginal={showOriginal}
-          toggleOriginalPreview={toggleOriginalPreview}
-          canvasRef={canvasRef as React.RefObject<HTMLCanvasElement>}
-          isProcessing={isProcessing}
-          downloadImage={downloadImage}
-          colorMode={colorMode}
-          setColorMode={handleColorModeChange}
-        />
+        <>
+          <ImageEditor
+            onReset={resetImage}
+            isReversed={isReversed}
+            toggleReverse={toggleReverse}
+            intensity={intensity}
+            setIntensity={handleIntensityChange}
+            showOriginal={showOriginal}
+            toggleOriginalPreview={toggleOriginalPreview}
+            canvasRef={canvasRef as React.RefObject<HTMLCanvasElement>}
+            isProcessing={isProcessing}
+            downloadImage={downloadImage}
+            colorMode={colorMode}
+            setColorMode={handleColorModeChange}
+          />
+        </>
       )}
-    </>
+    </div>
   );
 }
